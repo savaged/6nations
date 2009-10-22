@@ -21,12 +21,22 @@ package info.savaged.sixnations
 class User {
 
     String name
+    Role role
 
     static constraints = {
+        // TODO make this configurable
         name inList:['david', 'sajid', 'jaro', 'asif', 'adam']
+        role nullable:true
     }
 
     String toString() {
-	name
+	"$name as $role"
     }
+}
+
+enum Role {
+    product_owner,
+    agile_coach,
+    developer,
+    tester
 }
