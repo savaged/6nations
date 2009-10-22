@@ -36,12 +36,10 @@ class UserStoryTests extends GrailsUnitTestCase {
 	    title:'Test userStory',
 	    description:'Test description',
 	    acceptanceTest:'Test acceptance',
-	    estimatedStoryPoints:1
+	    estimatedStoryPoints:8,
+            owner:new User(name:'david', role:Role.agile_coach)
 	)
 	userStory.validate()
-	def errorCount = 0
-	userStory.errors.each { errorCount++ }
-	assertEquals 1, errorCount
-	assertEquals 'storyWall null', 'nullable', userStory.errors.storyWall
+	assertFalse userStory.hasErrors()
     }
 }
