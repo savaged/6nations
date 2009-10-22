@@ -18,33 +18,7 @@ along with 6nations. If not, see <http://www.gnu.org/licenses/>.
 */
 package info.savaged.sixnations
 
-/**
- * User-stories belong to the product (backlog)
- */
-class UserStory extends Card {
+class TaskController {
 
-    static belongsTo = StoryWall
-    StoryWall defined
-    StoryWall developing
-    StoryWall testing
-    StoryWall accepted
-
-    User owner
-    
-    static hasMany = [
-        tasks:Task,
-        defects:Defect
-    ]
-
-    static constraints = {
-        owner nullable:false
-        defined nullable:true
-        developing nullable:true
-        testing nullable:true
-        accepted nullable:true
-    }
-
-    String toString() {
-	super.toString()
-    }
+    def scaffold = true
 }

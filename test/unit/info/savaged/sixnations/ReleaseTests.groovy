@@ -18,33 +18,30 @@ along with 6nations. If not, see <http://www.gnu.org/licenses/>.
 */
 package info.savaged.sixnations
 
-/**
- * User-stories belong to the product (backlog)
- */
-class UserStory extends Card {
+import grails.test.*
 
-    static belongsTo = StoryWall
-    StoryWall defined
-    StoryWall developing
-    StoryWall testing
-    StoryWall accepted
+class ReleaseTests extends GrailsUnitTestCase {
 
-    User owner
-    
-    static hasMany = [
-        tasks:Task,
-        defects:Defect
-    ]
-
-    static constraints = {
-        owner nullable:false
-        defined nullable:true
-        developing nullable:true
-        testing nullable:true
-        accepted nullable:true
+    protected void setUp() {
+        super.setUp()
+        mockDomain Release
     }
 
-    String toString() {
-	super.toString()
+    protected void tearDown() {
+        super.tearDown()
+    }
+
+    void testValidate() {
+        def date = new Date()
+        date + 90
+        def release = new Release(
+            goal:'my goal',
+            outcomes:'a war file with all the features and a set of docs',
+            doneBy:date,
+            done:false
+        )
+        release.validate()
+        //release.errors.each { println it }
+        assertFalse release.hasErrors()
     }
 }

@@ -19,40 +19,19 @@ along with 6nations. If not, see <http://www.gnu.org/licenses/>.
 package info.savaged.sixnations
 
 /**
- * The story wall holds the user-stories for an iteration (sprint)
- * An iteration (sprint) belongs to a release (project)
+ * A release simply provides meta data about a project for a product
  */
-class StoryWall {
+class Release {
 
-    String title
-    Date starting
-    Date ending
-    
-    static hasMany = [
-        defined:UserStory,
-        developing:UserStory,
-        testing:UserStory,
-        accepted:UserStory
-    ]
-    static mappedBy = [
-        defined:'defined',
-        developing:'developing',
-        testing:'testing',
-        accepted:'accepted'
-    ]
+    String goal
+    String outcomes
+    Date doneBy
+    Boolean done
 
     static constraints = {
-	title blank:false
-	defined nullable:true
-	developing nullable:true
-	testing nullable:true
-	accepted nullable:true
-        starting nullable:true
-        ending nullable:true
-    }
-
-    String toString() {
-	"$title starting $starting and ending $ending"
+        goal unique:true, blank:false
+        outcomes blank:false
+        doneBy nullable:false
+        done nullable:false
     }
 }
-

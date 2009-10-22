@@ -24,7 +24,7 @@ class User {
     Role role
 
     static constraints = {
-        // TODO make this configurable
+        // TODO make this list configurable 
         name inList:['david', 'sajid', 'jaro', 'asif', 'adam']
         role nullable:true
     }
@@ -33,10 +33,10 @@ class User {
 	"$name as $role"
     }
 }
-
 enum Role {
     product_owner,
     agile_coach,
     developer,
     tester
 }
+
