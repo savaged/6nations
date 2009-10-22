@@ -18,19 +18,38 @@ along with 6nations. If not, see <http://www.gnu.org/licenses/>.
 */
 package info.savaged.sixnations
 
-class UserStory extends Card {
+class UserStory {
 
     static belongsTo = StoryWall
     StoryWall storyWall
 
     User owner
     
+    String title
+    String description
+
+    String acceptanceTest
+    
+    Integer estimatedStoryPoints
+    Integer actualStoryPoints
+
+    User dev1
+    User dev2
+    User tester
+
     static hasMany = [
-        tasks:Task,
         defects:Defect
     ]
 
     static constraints = {
+        title blank:false
+        description blank:false
+        acceptanceTest blank:false
+        estimatedStoryPoints min:1
+        actualStoryPoints nullable:true
+        dev1 nullable:true
+        dev2 nullable:true
+        tester nullable:true
         owner nullable:false
     }
 }
